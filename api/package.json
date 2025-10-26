@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push"
   },
   "keywords": [],
   "author": "",
@@ -18,8 +22,10 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.4",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.9.1",
     "nodemon": "^3.1.10",
     "prisma": "^6.18.0",

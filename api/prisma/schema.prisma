@@ -44,7 +44,7 @@ model User {
 }
 
 model Child {
-  id            String        @id @db.Uuid
+  id            String        @id @default(uuid()) @db.Uuid
   nursery_id    String        @db.Uuid
   first_name    String?       @db.VarChar
   last_name     String?       @db.VarChar
@@ -70,7 +70,7 @@ model ChildParent {
 }
 
 model Nursery {
-  id              String       @id @db.Uuid
+  id              String       @id @default(uuid()) @db.Uuid
   organisation_id String       @db.Uuid
   name            String       @db.VarChar
   address         String?
@@ -87,7 +87,7 @@ model Nursery {
 }
 
 model Organisation {
-  id                  String    @id @db.Uuid
+  id                  String    @id @default(uuid()) @db.Uuid
   name                String    @db.VarChar
   registration_number String?   @db.VarChar
   address             String?
@@ -99,7 +99,7 @@ model Organisation {
 }
 
 model Parent {
-  id           String        @id @db.Uuid
+  id           String        @id @default(uuid()) @db.Uuid
   user_id      String        @db.Uuid
   phone        String?       @db.VarChar
   relationship String?       @db.VarChar
@@ -110,7 +110,7 @@ model Parent {
 }
 
 model Permission {
-  id          String  @id @db.Uuid
+  id          String  @id @default(uuid()) @db.Uuid
   role_id     String  @db.Uuid
   code        String  @unique @db.VarChar
   description String?
@@ -118,7 +118,7 @@ model Permission {
 }
 
 model Staff {
-  id             String    @id @db.Uuid
+  id             String    @id @default(uuid()) @db.Uuid
   user_id        String    @db.Uuid
   nursery_id     String    @db.Uuid
   position       String?   @db.VarChar
@@ -132,7 +132,7 @@ model Staff {
 }
 
 model UserType {
-  id                String   @id @db.Uuid
+  id                String   @id @default(uuid()) @db.Uuid
   name              String   @unique @db.VarChar
   description       String?
   portal_access     String[] @db.VarChar

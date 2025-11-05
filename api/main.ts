@@ -6,6 +6,8 @@ import userTypeRoutes from './routes/userTypeRoutes';
 import roleRoutes from './routes/roleRoutes';
 import nurseryRoutes from './routes/nurseryRoutes';
 import userRoutes from './routes/userRoutes';
+import { authenticateSupabase, authorisedRoles } from './middleware/auth';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
@@ -14,7 +16,10 @@ app.use(cors());
 app.use(express.json());
 
 // health
-app.get('/api/health', (_req, res) => res.json({ ok: true }));
+app.get('/api/health', authenticateSupabase, (_req, res) => res.json({ ok: true }));
+
+// Temp Auth Test Route
+app.use('/api/auth', authRoutes)
 
 // CRUD routes
 app.use('/api/organisations', organisationRoutes);

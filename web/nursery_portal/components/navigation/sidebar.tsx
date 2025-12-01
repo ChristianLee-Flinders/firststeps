@@ -1,10 +1,8 @@
 'use client'
 import React from 'react'
-import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { navItems } from '@/lib/navigation'
-import { usePathname } from 'next/navigation'
-import { createPageUrl } from '@/lib/utils'
+import { helpNavItems, navItems, organisationNavItems } from '@/lib/navigation'
+import SidebarNav from './SidebarNav'
 
 interface UserType {
   avatar_url?: string | null
@@ -26,9 +24,6 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen, user, location }: SidebarProps) {
-  const pathname = usePathname() ?? '/'
-  const trimmedPath = pathname.replace(/^\/+/, '').toLowerCase()
-
   return (
     <>
       {/* Mobile sidebar overlay */}
@@ -74,44 +69,25 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, user, location }:
               </div>
               <div>
                 <h1 className="text-lg font-bold text-slate-800">First Steps</h1>
-                <p className="text-xs text-slate-500">Nursery Portal</p>
+                <p className="text-xs text-slate-500">Nursery Portal</p> 
               </div>
             </div>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 p-4 overflow-y-auto">
-            <ul className="space-y-1.5">
-              {navItems.map((item) => {
-                const itemPage = String(item.page ?? '').replace(/^\/+/, '').toLowerCase()
-                const itemUrl = createPageUrl(item.page)
-                const isActive =
-                  itemPage === ''
-                    ? trimmedPath === '' // home/root
-                    : trimmedPath === itemPage || trimmedPath.startsWith(itemPage + '/')
+          {/* Navigation - reused component */}
+          <div className="flex-1 flex flex-col">
+            <div>
+              <SidebarNav items={organisationNavItems} onNavigate={() => setSidebarOpen(false)} title="organisation" />
+              <SidebarNav items={navItems} onNavigate={() => setSidebarOpen(false)} title="nursery" />
+            </div>
+              {/* helpNavItems pinned to bottom of this flex column */}
+            <div className="mt-auto">
+              <SidebarNav className="pb-4" items={helpNavItems} onNavigate={() => setSidebarOpen(false)} />
+            </div>
+          </div>
+          
 
-                return (
-                  <li key={item.page ?? item.name}>
-                    <Link
-                      href={itemUrl}
-                      className={`
-                        sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
-                        ${isActive
-                          ? 'active text-white border-r-4 border-primary pr-2'
-                          : 'text-slate-600 hover:bg-emerald-50 hover:text-emerald-700'}
-                      `}
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      <item.icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
-                      {item.name}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
-
-          {/* User section */}
+          {/* Nursery section */}
           <div className="p-4 border-t border-slate-100">
             <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50">
               <Avatar className="h-9 w-9 ring-2 ring-emerald-100">

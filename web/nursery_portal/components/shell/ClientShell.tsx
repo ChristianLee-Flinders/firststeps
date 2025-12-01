@@ -14,12 +14,18 @@ export default function ClientShell({
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
+  const dummyUser = {
+    avatar_url: null,
+    full_name: 'Demo User',
+    email: 'demo@example.com',
+  }
+
   return (
     <>
       <Sidebar user={user} location={location} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <div className="lg:ml-72">
-        <Topbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Topbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} user={dummyUser}/>
         <main className="p-4 lg:p-8">{children}</main>
       </div>
     </>

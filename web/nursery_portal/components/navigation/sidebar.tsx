@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { helpNavItems, navItems, organisationNavItems } from '@/lib/navigation'
 import SidebarNav from './SidebarNav'
+import NurserySwitcher from '../ui/nurserySwitcher'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '../ui/command'
 
 interface UserType {
   avatar_url?: string | null
@@ -88,19 +89,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, user, location }:
           
 
           {/* Nursery section */}
-          <div className="p-4 border-t border-slate-100">
-            <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50">
-              <Avatar className="h-9 w-9 ring-2 ring-emerald-100">
-                <AvatarImage src={user?.avatar_url ?? undefined} />
-                <AvatarFallback className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white text-sm">
-                  {user?.full_name?.charAt(0) || 'U'}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-slate-800 truncate">{location?.name || 'Location'}</p>
-                <p className="text-xs text-slate-500 truncate">{location?.address || 'Address'}</p>
-              </div>
-            </div>
+          <div className=" border-t border-slate-100">
+            <NurserySwitcher currentNursery={location} className="" />
           </div>
         </div>
       </aside>

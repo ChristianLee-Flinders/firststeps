@@ -11,7 +11,20 @@ export const navItems = [
 export const organisationNavItems = [
   { name: 'Organisation', icon:Building ,page: 'organisation' },
 ];
+
 export const helpNavItems = [
   { name: 'Settings', icon: Settings, page: 'settings' },
   { name: 'Help & Support', icon: CircleQuestionMark, page: 'help' },
+];
+
+export const staffNavItems = [
+  { name: 'Team', icon: 'Users', page: 'staff' },
+  { name: 'Clock In', icon: 'Clock', page: 'staff/registers' },
+  { name: 'Rota', icon: 'Calendar', page: 'staff/rota' },
+  { name: 'Time Off', icon: 'Palmtree', page: 'staff/leave' },
+  { name: 'Training', icon: 'GraduationCap', page: 'staff/training', group: 'Development' },
+  { name: 'Reviews', icon: 'FolderKanban', page: 'staff/reviews', group: 'Development' },
+  { name: 'Documents', icon: 'Document', page: 'staff/documents', group: 'Records' },
+  { name: 'Incidents', icon: 'TriangleAlert', page: 'staff/incidents', group: 'Records' },
+  { name: 'Ratios', icon: 'Users', page: 'staff/ratios', group: 'Compliance' },
 ];

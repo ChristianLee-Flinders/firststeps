@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Button } from '../ui/button'
-import { Bell, ChevronDown, LogOut, Menu, X, Search, Settings, User } from 'lucide-react'
+import { Bell, ChevronDown, LogOut, Menu, X, Search, Settings, User, CircleQuestionMark } from 'lucide-react'
 import { Input } from '../ui/input'
 import {
   DropdownMenu,
@@ -53,11 +53,19 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, user, onLogout }: 
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {/* Notifications */}
             <Button variant="ghost" size="icon" className="relative rounded-xl">
               <Bell className="w-5 h-5 text-slate-600" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full" />
+            </Button>
+
+            <Button variant="ghost" size="icon" className="relative rounded-xl">
+              <Settings className="w-5 h-5 text-slate-600" />
+            </Button>
+
+            <Button variant="ghost" size="icon" className="relative rounded-xl">
+              <CircleQuestionMark className="w-5 h-5 text-slate-600" />
             </Button>
 
             {/* User dropdown */}

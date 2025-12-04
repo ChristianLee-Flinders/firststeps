@@ -1,12 +1,11 @@
 'use client'
-import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { createPageUrl } from '@/lib/utils'
+import { createPageUrl, getIconByName } from '@/lib/utils'
 
 export type NavItem = {
   name?: string
-  icon: React.ComponentType<any>
+  icon: string
   page: string | null
 }
 
@@ -17,23 +16,42 @@ type SidebarNavProps = {
   className?: string
 }
 
+function normalize(p?: string | null) {
+  return String(p ?? '').replace(/^\/+/, '').replace(/\/+$/, '').toLowerCase()
+}
+
 export default function SidebarNav({ items, onNavigate, title, className }: SidebarNavProps) {
   const pathname = usePathname() ?? '/'
-  const trimmedPath = pathname.replace(/^\/+/, '').toLowerCase()
+  const trimmedPath = normalize(pathname)
+
+  // prepare normalized items
+  const normItems = items.map((it) => ({ ...it, normPage: normalize(it.page) }))
+
+  // 1) exact match preferred
+  const exact = normItems.find((it) => it.normPage === trimmedPath)
+
+  // 2) if no exact match, find the longest matching prefix (parent)
+  let activeNormPage: string | null = exact ? exact.normPage : null
+  if (!activeNormPage) {
+    const candidates = normItems
+      .filter((it) => it.normPage !== '' && trimmedPath.startsWith(it.normPage + '/'))
+      .sort((a, b) => b.normPage.length - a.normPage.length)
+    if (candidates.length > 0) activeNormPage = candidates[0].normPage
+  }
 
   return (
-    <nav className={`p-4 overflow-y-auto ${className}`}>
-        {title && <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">{title}</h2>}
+    <nav className={`px-4 py-3 overflow-y-auto ${className ?? ''}`}>
+      {title && <h2 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{title}</h2>}
       <ul className="space-y-1.5">
-        {items.map((item) => {
-          const itemPage = String(item.page ?? '').replace(/^\/+/, '').toLowerCase()
+        {normItems.map((item) => {
+          const itemPage = item.normPage
           const itemUrl = createPageUrl(item.page || '')
           const isActive =
             itemPage === ''
               ? trimmedPath === '' // home/root
-              : trimmedPath === itemPage || trimmedPath.startsWith(itemPage + '/')
+              : itemPage === activeNormPage
 
-          const Icon = item.icon
+          const Icon = getIconByName(item.icon)
 
           return (
             <li key={item.page ?? item.name}>

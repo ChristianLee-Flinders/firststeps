@@ -1,9 +1,8 @@
 'use client'
 import React from 'react'
-import { helpNavItems, navItems, organisationNavItems } from '@/lib/navigation'
+import { financeNavItems, navItems, organisationNavItems } from '@/lib/navigation'
 import SidebarNav from './SidebarNav'
 import NurserySwitcher from '../ui/nurserySwitcher'
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '../ui/command'
 
 interface UserType {
   avatar_url?: string | null
@@ -76,14 +75,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, user, location }:
           </div>
 
           {/* Navigation - reused component */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col overflow-y-scroll">
             <div>
               <SidebarNav items={organisationNavItems} onNavigate={() => setSidebarOpen(false)} title="organisation" />
               <SidebarNav items={navItems} onNavigate={() => setSidebarOpen(false)} title="nursery" />
-            </div>
-              {/* helpNavItems pinned to bottom of this flex column */}
-            <div className="mt-auto">
-              <SidebarNav className="pb-4" items={helpNavItems} onNavigate={() => setSidebarOpen(false)} />
+              <SidebarNav items={financeNavItems} onNavigate={() => setSidebarOpen(false)} title="finance" />
             </div>
           </div>
           

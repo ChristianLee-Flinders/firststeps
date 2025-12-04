@@ -1,20 +1,21 @@
-import { Baby, Building, CircleQuestionMark, CreditCard, FileText, LayoutDashboard, Settings, Users } from "lucide-react";
+export const organisationNavItems = [
+  { name: 'Organisation', icon:'Building' ,page: 'organisation' },
+];
 
 export const navItems = [
-  { name: 'Dashboard', icon: LayoutDashboard, page: 'Dashboard' },
-  { name: 'Children', icon: Baby, page: 'Children' },
-  { name: 'Staff', icon: Users, page: 'Staff' },
-  { name: 'Reports', icon: FileText, page: 'Reports' },
-  { name: 'Finance', icon: CreditCard, page: 'Finance' },
+  { name: 'Dashboard', icon: 'LayoutDashboard', page: 'Dashboard' },
+  { name: 'Children', icon: 'Baby', page: 'Children' },
+  { name: 'Staff', icon: 'Users', page: 'Staff' },
+  { name: 'Reports', icon: 'FileText', page: 'Reports' },
 ];
 
-export const organisationNavItems = [
-  { name: 'Organisation', icon:Building ,page: 'organisation' },
-];
-
-export const helpNavItems = [
-  { name: 'Settings', icon: Settings, page: 'settings' },
-  { name: 'Help & Support', icon: CircleQuestionMark, page: 'help' },
+export const financeNavItems = [
+  { name: 'Overview', icon: 'PoundSterling', page: 'finance' },
+  { name: 'Family Accounts', icon: 'Users', page: 'finance/accounts' },
+  { name: 'Invoicing', icon: 'ReceiptTax', page: 'finance/invoicing' },
+  { name: 'Payments', icon: 'Wallet', page: 'finance/payments' },
+  { name: 'Funding', icon: 'Landmark', page: 'finance/funding' },
+  { name: 'Adhoc Charges', icon: 'HandCoins', page: 'finance/adhoc' },
 ];
 
 export const childrenNavItems = [

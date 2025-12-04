@@ -1,20 +1,14 @@
-import { Button } from "@/components/ui/button";
+'use client';
 
 interface PageHeaderProps {
   title: string;
   description?: string;
-  action?: () => void;
-  actionLabel?: string;
-  actionIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   children?: React.ReactNode;
 }
 
 export default function PageHeader({ 
     title,
     description,
-    action,
-    actionLabel,
-    actionIcon: ActionIcon,
     children
 }: PageHeaderProps) {
   return (
@@ -27,15 +21,6 @@ export default function PageHeader({
       </div>
       <div className="flex items-center gap-3">
         {children}
-        {action && (
-          <Button 
-            onClick={action}
-            className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-xl shadow-lg shadow-emerald-200/50 transition-all hover:shadow-xl hover:shadow-emerald-200/50"
-          >
-            {ActionIcon && <ActionIcon className="w-4 h-4 mr-2" />}
-            {actionLabel}
-          </Button>
-        )}
       </div>
     </div>
   );

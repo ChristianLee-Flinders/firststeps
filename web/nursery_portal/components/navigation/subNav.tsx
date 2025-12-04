@@ -33,7 +33,6 @@ function normalizePath(p: string | null | undefined) {
 
 function getIconByName(name?: string) {
   if (!name) return Icons.FileText // fallback
-  // Types: Icons[name] may be undefined; cast to any to render
   return (Icons as any)[name] ?? Icons.FileText
 }
 
@@ -46,7 +45,6 @@ export default function SubNav({ items, currentPage }: SubNavProps) {
   let normalizedCurrent = provided
 
   if (!provided) {
-    // dynamic fallback to client pathname when prop not given
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { usePathname } = require('next/navigation')
@@ -76,7 +74,6 @@ export default function SubNav({ items, currentPage }: SubNavProps) {
           const isActive = normalizePath(item.page) === normalizedCurrent
           const Icon = getIconByName(item.icon)
           return (
-            
             <Link
               key={item.page ?? item.name}
               href={createPageUrl(item.page)}
@@ -91,54 +88,56 @@ export default function SubNav({ items, currentPage }: SubNavProps) {
           )
         })}
 
-        {/* More dropdown (contains remaining items) */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant={isInMore ? 'default' : 'ghost'}
-              size="sm"
-              className={`gap-1 rounded-lg ml-auto ${isInMore ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-sm hover:from-emerald-600 hover:to-teal-600' : 'text-slate-600 hover:bg-slate-50'}`}
-            >
-              {isInMore && currentItem ? (
-                <>
-                  {(() => {
-                    const CurrentIcon = getIconByName(currentItem.icon)
-                    return <CurrentIcon className="w-4 h-4" />
-                  })()}
-                  <span className="hidden sm:inline">{currentItem.name}</span>
-                </>
-              ) : (
-                <>
-                  <Menu className="w-4 h-4" />
-                  <span className="hidden sm:inline">More</span>
-                </>
-              )}
-              <ChevronDown className="w-3 h-3" />
-            </Button>
-          </DropdownMenuTrigger>
+        {/* More dropdown (contains remaining items) - only show if there are more items */}
+        {moreItems.length > 0 && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant={isInMore ? 'default' : 'ghost'}
+                size="sm"
+                className={`gap-1 rounded-lg ml-auto ${isInMore ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-sm hover:from-emerald-600 hover:to-teal-600' : 'text-slate-600 hover:bg-slate-50'}`}
+              >
+                {isInMore && currentItem ? (
+                  <>
+                    {(() => {
+                      const CurrentIcon = getIconByName(currentItem.icon)
+                      return <CurrentIcon className="w-4 h-4" />
+                    })()}
+                    <span className="hidden sm:inline">{currentItem.name}</span>
+                  </>
+                ) : (
+                  <>
+                    <Menu className="w-4 h-4" />
+                    <span className="hidden sm:inline">More</span>
+                  </>
+                )}
+                <ChevronDown className="w-3 h-3" />
+              </Button>
+            </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="end" className="w-48 rounded-xl">
-            {Object.entries(grouped).map(([groupName, itemsInGroup], idx, arr) => (
-              <React.Fragment key={groupName}>
-                <DropdownMenuLabel className="text-xs text-slate-400">{groupName}</DropdownMenuLabel>
+            <DropdownMenuContent align="end" className="w-48 rounded-xl">
+              {Object.entries(grouped).map(([groupName, itemsInGroup], idx, arr) => (
+                <React.Fragment key={groupName}>
+                  <DropdownMenuLabel className="text-xs text-slate-400">{groupName}</DropdownMenuLabel>
 
-                {itemsInGroup.map((mi) => (
-                  <DropdownMenuItem key={mi.page} asChild className="cursor-pointer rounded-lg">
-                    <Link href={createPageUrl(mi.page)} className="flex items-center gap-2">
-                      {(() => {
-                        const Icon = getIconByName(mi.icon)
-                        return <Icon className="w-4 h-4 text-slate-500" />
-                      })()}
-                      {mi.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
+                  {itemsInGroup.map((mi) => (
+                    <DropdownMenuItem key={mi.page} asChild className="cursor-pointer rounded-lg">
+                      <Link href={createPageUrl(mi.page)} className="flex items-center gap-2">
+                        {(() => {
+                          const Icon = getIconByName(mi.icon)
+                          return <Icon className="w-4 h-4 text-slate-500" />
+                        })()}
+                        {mi.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
 
-                {idx < arr.length - 1 && <DropdownMenuSeparator />}
-              </React.Fragment>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+                  {idx < arr.length - 1 && <DropdownMenuSeparator />}
+                </React.Fragment>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
     </div>
   )

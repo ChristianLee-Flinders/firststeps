@@ -1,8 +1,11 @@
+import AccountInvoices from "./accountInvoices";
 import AccountOverview from "./accountOverview";
+import AccountPayment from "./accountPayment";
 import AccountSummary from "./accountSummary"
 
 interface AccountMainProps {
     child: {
+        id: string;
         first_name: string;
         last_name: string;
         parent1_name?: string;
@@ -16,6 +19,8 @@ function AccountMain({ child }: AccountMainProps) {
     <>
         <AccountSummary /> 
         <AccountOverview child={child} />
+        <AccountInvoices child={{ id: child.id }} />
+        <AccountPayment />
     </>
   )
 }

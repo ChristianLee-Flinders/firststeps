@@ -2,6 +2,8 @@ export const organisationNavItems = [
   { name: 'Organisation', icon:'Building' ,page: 'organisation' },
 ];
 
+// Main navigation items
+
 export const navItems = [
   { name: 'Dashboard', icon: 'LayoutDashboard', page: 'Dashboard' },
   { name: 'Children', icon: 'Baby', page: 'Children' },
@@ -18,6 +20,8 @@ export const financeNavItems = [
   { name: 'Adhoc Charges', icon: 'HandCoins', page: 'finance/adhoc' },
 ];
 
+// Sub-navigation items for Children
+
 export const childrenNavItems = [
   { name: 'Children', icon: 'Baby', page: 'children' },
   { name: 'Learning Logs', icon: 'BookOpen', page: 'children/learning-logs' },
@@ -27,6 +31,15 @@ export const childrenNavItems = [
   { name: 'Medications', icon: 'Pill', page: 'children/medications', group: 'Safeguarding' },
   { name: 'Reports', icon: 'ChartColumn', page: 'children/reports', group: 'Analytics' },
 ];
+
+export const childProfileNavItems = [
+  { name: 'Overview', icon: 'Activity', tabValue: 'overview' },
+  { name: 'Emergency', icon: 'Phone', tabValue: 'contacts' },
+  { name: 'Health & SEND', icon:'Sheild', tabValue: 'health' },
+  { name: 'Family Account', icon: 'PoundSterling', tabValue: 'account' },
+];
+
+// Sub-navigation items for Staff
 
 export const staffNavItems = [
   { name: 'Team', icon: 'Users', page: 'staff' },

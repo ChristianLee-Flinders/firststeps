@@ -9,6 +9,11 @@ import { ChevronLeft, ChevronRight, LayoutGrid, List, Search } from "lucide-reac
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Input } from "../ui/input";
 import React from "react";
+import Link from "next/link";
+import StatusBadge from "../ui/statusBadge";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { createPageUrl, calculateAge } from "@/lib/utils";
+import { Checkbox } from "@radix-ui/react-checkbox";
 
 
 type ChildrenTableProps = {
@@ -19,7 +24,7 @@ export default function ChildrenTable({ onSelectionChange }: ChildrenTableProps)
     // State
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
-    const [viewMode, setViewMode] = useState('list');
+    const [viewMode, setViewMode] = useState('cards');
 
     // Filtering
     const [search, setSearch] = useState('');
@@ -45,6 +50,12 @@ export default function ChildrenTable({ onSelectionChange }: ChildrenTableProps)
     React.useEffect(() => {
         setCurrentPage(1);
     }, [search, statusFilter, roomFilter]);
+
+    const toggleSelect = (id: string) => {
+        setSelectedIds(prev => 
+        prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+        );
+    };
 
     const toggleSelectAll = () => {
         const all = filteredChildren.map(c => c.id)
@@ -128,12 +139,46 @@ export default function ChildrenTable({ onSelectionChange }: ChildrenTableProps)
             </div>
             
             {/* List View */}
+            {viewMode === 'list' && (
             <DataTable 
                 columns={columns} 
                 data={paginatedChildren} 
             /> 
+            )}
 
             {/* Cards View */}
+            {viewMode === 'cards' && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {paginatedChildren.map(child => (
+                    <Link key={child.id} href={createPageUrl(`children/${child.id}`)}>
+                    <div className="bg-white rounded-2xl border border-slate-100 p-4 hover:shadow-lg transition-all hover:border-emerald-200 cursor-pointer">
+                        <div className="flex items-center gap-3 mb-3">
+                        <Checkbox
+                            checked={selectedIds.includes(child.id)}
+                            onCheckedChange={() => toggleSelect(child.id)}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                        <Avatar className="h-12 w-12 ring-2 ring-emerald-100">
+                            <AvatarImage src={child.avatar_url} />
+                            <AvatarFallback className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white">
+                            {child.first_name?.[0]}{child.last_name?.[0]}
+                            </AvatarFallback>
+                        </Avatar>
+                        </div>
+                        <h3 className="font-semibold text-slate-800">{child.first_name} {child.last_name}</h3>
+                        <p className="text-sm text-slate-500 mb-2">{calculateAge(child.date_of_birth)} old</p>
+                        <div className="flex items-center justify-between">
+                        <span className="text-xs text-slate-400">{child.room || 'No room'}</span>
+                        <StatusBadge status={child.status || 'active'} />
+                        </div>
+                        {child.parent1_name && (
+                        <p className="text-xs text-slate-400 mt-2 truncate">Parent: {child.parent1_name}</p>
+                        )}
+                    </div>
+                    </Link>
+                ))}
+                </div>
+            )}
 
             {/* Pagination */}
             {totalPages > 1 && (

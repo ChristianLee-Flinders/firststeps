@@ -1,5 +1,5 @@
 export type Gender = "male" | "female" | "other";
-export type ChildStatus = "active" | "inactive" | "waitlist";
+export type ChildStatus = "registered" | "left" | "waitlist";
 export type FundingType = "none" | "15_hours" | "30_hours" | "full_funded";
 
 export interface Child {
@@ -47,7 +47,7 @@ export const dummyChildren: Child[] = [
     last_name: "Smith",
     date_of_birth: "2020-05-14",
     gender: "male",
-    status: "active",
+    status: "registered",
     room: "Toddlers",
     parent1_name: "Laura Smith",
     parent1_phone: "07111 111111",
@@ -62,7 +62,7 @@ export const dummyChildren: Child[] = [
     parent1_phone: "07123 456789",
     parent1_name: "Emma Johnson",
     room: "Toddlers",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-3",
@@ -85,7 +85,7 @@ export const dummyChildren: Child[] = [
     room: "Preschool",
     parent1_name: "Hannah Brown",
     parent1_phone: "07333 333333",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-5",
@@ -96,7 +96,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Sophie Jones",
     parent1_phone: "07444 444444",
     room: "Preschool",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-6",
@@ -109,7 +109,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Carlos Garcia",
     parent1_phone: "07555 555555",
     room: "Preschool",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-7",
@@ -120,7 +120,7 @@ export const dummyChildren: Child[] = [
     room: "Toddlers",
     parent1_name: "Olivia Davis",
     parent1_phone: "07666 666666",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-8",
@@ -128,7 +128,7 @@ export const dummyChildren: Child[] = [
     last_name: "Miller",
     date_of_birth: "2019-02-25",
     gender: "female",
-    status: "inactive",
+    status: "left",
     room: "Preschool",
     parent1_name: "Sophie Miller",
     parent1_phone: "07777 777777",
@@ -141,7 +141,7 @@ export const dummyChildren: Child[] = [
     room: "Babies",
     parent1_name: "Rachel Wilson",
     parent1_phone: "07888 888888",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-10",
@@ -152,7 +152,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Daniel Moore",
     parent1_phone: "07999 999999",
     room: "Toddlers",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-11",
@@ -164,7 +164,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Sarah Taylor",
     parent1_phone: "07000 000001",
     room: "Preschool",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-12",
@@ -176,7 +176,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Lucy Anderson",
     parent1_phone: "07000 000002",
     room: "Preschool",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-13",
@@ -188,7 +188,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Emily Thomas",
     parent1_phone: "07000 000003",
     room: "Preschool",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-14",
@@ -199,7 +199,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Laura Jackson",
     parent1_phone: "07000 000004",
     room: "Preschool",
-    status: "active",
+    status: "registered",
   },
   {
     id: "child-15",
@@ -211,7 +211,7 @@ export const dummyChildren: Child[] = [
     parent1_name: "Karen White",
     parent1_phone: "07000 000005",
     room: "Toddlers",
-    status: "active",
+    status: "registered",
   }
 ];
 

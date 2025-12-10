@@ -37,6 +37,8 @@ const statusConfig: StatusConfig = {
   
   // Child statuses
   waitlist: { label: 'Waitlist', class: 'bg-violet-100 text-violet-700 border-violet-200' },
+  registered: { label: 'Registered', class: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  left: { label: 'Left', class: 'bg-rose-100 text-rose-700 border-rose-200' },
   
   // Ofsted ratings
   outstanding: { label: 'Outstanding', class: 'bg-emerald-100 text-emerald-700 border-emerald-200' },

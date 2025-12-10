@@ -3,7 +3,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { calculateAge, createPageUrl } from "@/lib/utils";
 import StatusBadge from "../ui/statusBadge";
 import { Checkbox } from "../ui/checkbox";
-import React from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ChevronRight } from "lucide-react";
@@ -83,7 +82,7 @@ export function getChildrenColumns({ selectedIds, filteredChildren, toggleSelect
         {
             id: 'status',
             header: 'Status',
-            cell: ({ row }) => <StatusBadge status={row.original.status || 'active'} />
+            cell: ({ row }) => <StatusBadge status={row.original.status || 'Registered'} />
         },
         {
             id: 'actions',

@@ -60,7 +60,7 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, user, onLogout }: 
               <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full" />
             </Button>
 
-            <Button variant="ghost" size="icon" className="relative rounded-xl">
+            <Button variant="ghost" size="icon" className="relative rounded-xl" onClick={() => window.location.href = '/settings'}>
               <Settings className="w-5 h-5 text-slate-600" />
             </Button>
 

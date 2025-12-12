@@ -20,6 +20,46 @@ export const financeNavItems = [
   { name: 'Adhoc Charges', icon: 'HandCoins', page: 'finance/adhoc' },
 ];
 
+// Settings navigation items
+
+export const settingsnavItems = [
+  {
+    group: 'Organisation',
+    items: [
+      { name: 'General', page: 'settings', icon: 'Building2', description: 'Company details and branding' },
+      { name: 'Nurseries', page: 'settings/nurseries', icon: 'Baby', description: 'Manage nursery locations' },
+      { name: 'Users & Access', page: 'settings/users', icon: 'Users', description: 'Team members and permissions' },
+      { name: 'Roles & Permissions', page: 'settings/roles', icon: 'Shield', description: 'Role-based access control' },
+    ]
+  },
+  {
+    group: 'Finance',
+    items: [
+      { name: 'Invoice Settings', page: 'settings/invoice', icon: 'FileText', description: 'Invoice templates and defaults' },
+      { name: 'Payment Methods', page: 'settings/payments', icon: 'CreditCard', description: 'Payment gateways and options' },
+      { name: 'Fees & Pricing', page: 'settings/fees', icon: 'Receipt', description: 'Session rates and fee structures' },
+    ]
+  },
+  {
+    group: 'System',
+    items: [
+      { name: 'Notifications', page: 'settings/notifications', icon: 'Bell', description: 'Email and alert preferences' },
+      { name: 'Integrations', page: 'settings/integrations', icon: 'Plug', description: 'Third-party connections' },
+      { name: 'API & Webhooks', page: 'settings/api', icon: 'Key', description: 'Developer tools and API access' },
+      { name: 'Data & Privacy', page: 'settings/data', icon: 'Database', description: 'Data management and GDPR' },
+    ]
+  },
+  {
+    group: 'Customisation',
+    items: [
+      { name: 'Appearance', page: 'settings/appearance', icon: 'Palette', description: 'Theme and display options' },
+      { name: 'Operating Hours', page: 'settings/hours', icon: 'Clock', description: 'Opening times and sessions' },
+      { name: 'Email Templates', page: 'settings/email-templates', icon: 'Mail', description: 'Customise email content' },
+      { name: 'Localisation', page: 'settings/localisation', icon: 'Globe', description: 'Language and regional settings' },
+    ]
+  }
+];
+
 // Sub-navigation items for Children
 
 export const childrenNavItems = [

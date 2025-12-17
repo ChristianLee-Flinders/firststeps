@@ -26,18 +26,16 @@ export const settingsnavItems = [
   {
     group: 'Organisation',
     items: [
-      { name: 'General', page: 'settings', icon: 'Building2', description: 'Company details and branding' },
-      { name: 'Nurseries', page: 'settings/nurseries', icon: 'Baby', description: 'Manage nursery locations' },
-      { name: 'Users & Access', page: 'settings/users', icon: 'Users', description: 'Team members and permissions' },
-      { name: 'Roles & Permissions', page: 'settings/roles', icon: 'Shield', description: 'Role-based access control' },
+      { name: 'General', page: 'settings', icon: 'Building2'},
+      { name: 'Nurseries', page: 'settings/nurseries', icon: 'Baby'},
+      { name: 'Roles & Permissions', page: 'settings/roles', icon: 'Shield' },
     ]
   },
   {
-    group: 'Finance',
+    group: 'Nursery',
     items: [
-      { name: 'Invoice Settings', page: 'settings/invoice', icon: 'FileText', description: 'Invoice templates and defaults' },
-      { name: 'Payment Methods', page: 'settings/payments', icon: 'CreditCard', description: 'Payment gateways and options' },
-      { name: 'Fees & Pricing', page: 'settings/fees', icon: 'Receipt', description: 'Session rates and fee structures' },
+      { name: 'General', page: 'settings/nursery/general', icon: 'House'},
+      { name: 'Operating Hours', page: 'settings/nursery/hours', icon: 'Clock', description: 'Opening times and sessions' },
     ]
   },
   {
@@ -50,10 +48,18 @@ export const settingsnavItems = [
     ]
   },
   {
+    group: 'Finance',
+    items: [
+      { name: 'Invoice Settings', page: 'settings/invoice', icon: 'FileText', description: 'Invoice templates and defaults' },
+      { name: 'Payment Methods', page: 'settings/payments', icon: 'CreditCard', description: 'Payment gateways and options' },
+      { name: 'Fees & Pricing', page: 'settings/fees', icon: 'Receipt', description: 'Session rates and fee structures' },
+    ]
+  },
+  {
     group: 'Customisation',
     items: [
       { name: 'Appearance', page: 'settings/appearance', icon: 'Palette', description: 'Theme and display options' },
-      { name: 'Operating Hours', page: 'settings/hours', icon: 'Clock', description: 'Opening times and sessions' },
+      
       { name: 'Email Templates', page: 'settings/email-templates', icon: 'Mail', description: 'Customise email content' },
       { name: 'Localisation', page: 'settings/localisation', icon: 'Globe', description: 'Language and regional settings' },
     ]

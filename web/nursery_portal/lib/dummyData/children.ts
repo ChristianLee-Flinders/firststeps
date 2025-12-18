@@ -44,7 +44,7 @@ export const dummyChildren: Child[] = [
   {
     id: "child-1",
     first_name: "Oliver",
-    last_name: "Smith",
+    last_name: "Johnson",
     date_of_birth: "2020-05-14",
     gender: "male",
     status: "registered",

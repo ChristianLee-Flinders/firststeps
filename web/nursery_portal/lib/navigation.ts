@@ -36,23 +36,17 @@ export const settingsnavItems = [
     items: [
       { name: 'General', page: 'settings/nursery/general', icon: 'House'},
       { name: 'Operating Hours', page: 'settings/nursery/hours', icon: 'Clock', description: 'Opening times and sessions' },
-    ]
-  },
-  {
-    group: 'System',
-    items: [
-      { name: 'Notifications', page: 'settings/notifications', icon: 'Bell', description: 'Email and alert preferences' },
-      { name: 'Integrations', page: 'settings/integrations', icon: 'Plug', description: 'Third-party connections' },
-      { name: 'API & Webhooks', page: 'settings/api', icon: 'Key', description: 'Developer tools and API access' },
-      { name: 'Data & Privacy', page: 'settings/data', icon: 'Database', description: 'Data management and GDPR' },
+      { name: 'Rooms & Moves', page: 'settings/nursery/rooms', icon: 'DoorOpen', description: 'Manage rooms and child moves' },
     ]
   },
   {
     group: 'Finance',
     items: [
-      { name: 'Invoice Settings', page: 'settings/invoice', icon: 'FileText', description: 'Invoice templates and defaults' },
-      { name: 'Payment Methods', page: 'settings/payments', icon: 'CreditCard', description: 'Payment gateways and options' },
+      { name: 'Invoice Settings', page: 'settings/invoices', icon: 'FileText', description: 'Invoice templates and defaults' },
       { name: 'Fees & Pricing', page: 'settings/fees', icon: 'Receipt', description: 'Session rates and fee structures' },
+      { name: 'Funding', page: 'settings/funding', icon: 'HandHelping', description: 'Government funding options' },
+      { name: 'Term Dates', page: 'settings/term-dates', icon: 'CalendarDays', description: 'Define term dates and holidays' },
+      { name: 'Payment Methods', page: 'settings/payments', icon: 'CreditCard', description: 'Accepted payment types' },
     ]
   },
   {
@@ -63,7 +57,15 @@ export const settingsnavItems = [
       { name: 'Email Templates', page: 'settings/email-templates', icon: 'Mail', description: 'Customise email content' },
       { name: 'Localisation', page: 'settings/localisation', icon: 'Globe', description: 'Language and regional settings' },
     ]
-  }
+  },
+  {
+    group: 'System',
+    items: [
+      { name: 'Notifications', page: 'settings/notifications', icon: 'Bell', description: 'Email and alert preferences' },
+      { name: 'Integrations', page: 'settings/integrations', icon: 'Plug', description: 'Third-party connections' },
+      { name: 'Data & Privacy', page: 'settings/data', icon: 'Database', description: 'Data management and GDPR' },
+    ]
+  },
 ];
 
 // Sub-navigation items for Children

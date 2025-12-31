@@ -17,12 +17,24 @@ export function getIconByName(name?: string) {
   return (Icons as any)[name] ?? Icons.FileText
 }
 
-export function calculateAge(dob: string) {
+export function calculateAge(
+  dob: string,
+  format: 'short' | 'long' = 'short'
+) {
   if (!dob) return '-';
+
   const birthDate = new Date(dob);
-  const years = differenceInYears(new Date(), birthDate);
-  const months = differenceInMonths(new Date(), birthDate) % 12;
-  if (years === 0) return `${months}m`;
-  return `${years}y ${months}m`;
+  const now = new Date();
+
+  const years = differenceInYears(now, birthDate);
+  const months = differenceInMonths(now, birthDate) % 12;
+
+  const yLabel = format === 'long' ? 'years' : 'y';
+  const mLabel = format === 'long' ? 'months' : 'm';
+
+  if (years === 0) {
+    return `${months} ${mLabel}`;
+  }
+
+  return `${years} ${yLabel} ${months} ${mLabel}`;
 }
-  

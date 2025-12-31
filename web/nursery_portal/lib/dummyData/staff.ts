@@ -3,7 +3,7 @@ export type ContractType = 'full_time' | 'part_time' | 'casual' | 'contractor'
 export type DbsStatus = 'clear' | 'pending' | 'expired' | 'not_submitted'
 
 export interface Staff {
-  id?: string
+  id: string
   first_name: string
   last_name: string
   email: string

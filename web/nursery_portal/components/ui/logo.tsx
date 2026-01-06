@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
 import Image from "next/image"
-import React from "react"
 
 const logoStyle = cva("", {
   variants: {
@@ -16,9 +15,22 @@ const logoStyle = cva("", {
   },
 })
 
+const iconStyle = cva("", {
+  variants: {
+    size: {
+      sm: "w-8 h-8",
+      md: "w-10 h-10",
+      lg: "w-12 h-12",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+})
+
 interface LogoProps {
   className?: string
-  variant?: "default" | "alt"
+  variant?: "default" | "alt" | "icon"
   alt?: string
   width?: number
   height?: number
@@ -33,6 +45,14 @@ export default function Logo({
   height = 100,
   size = "md",
 }: LogoProps) {
+  if (variant === "icon") {
+    return (
+      <div className={cn(iconStyle({ size }), className)}>
+        <Image src="/logos/logo_icon.png" alt={alt ?? "First Steps icon"} width={40} height={40} />
+      </div>
+    )
+  }
+
   const src = variant === "alt" ? "/logos/logo_alt.png" : "/logos/logo.png"
   const altText = alt ?? (variant === "alt" ? "First Steps logo (alt)" : "First Steps logo")
 

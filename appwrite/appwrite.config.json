@@ -84,6 +84,30 @@
             "commands": "npm install",
             "specification": "s-0.5vcpu-512mb",
             "path": "functions/sync-search-index"
+        },
+        {
+            "$id": "695c38ac000b173753ee",
+            "name": "sync-org-team",
+            "runtime": "node-22",
+            "specification": "s-0.5vcpu-512mb",
+            "execute": [
+                "any"
+            ],
+            "events": [
+                "databases.*.tables.organisations.rows.*.create",
+                "databases.*.tables.organisations.rows.*.update",
+                "databases.*.tables.organisations.rows.*.delete"
+            ],
+            "scopes": [
+                "users.read"
+            ],
+            "schedule": "",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.js",
+            "commands": "npm install",
+            "path": "functions/sync-org-team"
         }
     ],
     "tablesDB": [

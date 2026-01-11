@@ -1,15 +1,7 @@
-'use client'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, Eye, EyeOff, Lock, Mail } from 'lucide-react'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useState } from 'react';
 import Logo from '@/components/ui/logo'
+import LoginForm from './form'
 
 function LoginPage() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     
     return (
         <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center p-4">
@@ -24,7 +16,7 @@ function LoginPage() {
                                 <p className="text-slate-600">Nursery Management Portal</p>
                             </div>
                         </div>
-                            
+                                
                         <div className="space-y-4 mt-12">
                             <h2 className="text-3xl font-bold text-slate-800 leading-tight">
                                 Welcome back to<br />your nursery portal
@@ -33,7 +25,6 @@ function LoginPage() {
                                 Access your dashboard to manage children, staff, attendance, and everything in between.
                             </p>
                         </div>
-
                         <div className="grid grid-cols-2 gap-4 mt-8">
                             <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-emerald-100">
                                 <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-3">
@@ -43,19 +34,19 @@ function LoginPage() {
                                 </div>
                                 <p className="text-sm font-medium text-slate-800">Child Management</p>
                                 <p className="text-xs text-slate-500 mt-1">Track progress and development</p>
-                        </div>
-                        <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-teal-100">
-                            <div className="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center mb-3">
-                                <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                                </svg>
                             </div>
-                            <p className="text-sm font-medium text-slate-800">Staff Scheduling</p>
-                            <p className="text-xs text-slate-500 mt-1">Manage rotas and timesheets</p>
+                            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-teal-100">
+                                <div className="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center mb-3">
+                                    <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                    </svg>
+                                </div>
+                                <p className="text-sm font-medium text-slate-800">Staff Scheduling</p>
+                                <p className="text-xs text-slate-500 mt-1">Manage rotas and timesheets</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
                 {/* Right Side - Login Form */}
                 <div className="w-full max-w-md mx-auto lg:mx-0">
@@ -65,72 +56,7 @@ function LoginPage() {
                         <p className="text-slate-600">Enter your credentials to access the portal</p>
                         </div>
 
-                        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                        <div>
-                            <Label htmlFor="email" className="text-slate-700 font-medium">Email address</Label>
-                            <div className="relative mt-2">
-                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="you@nursery.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="pl-10 h-12 rounded-xl border-slate-200 focus:border-emerald-400 focus:ring-emerald-400"
-                            />
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="flex items-center justify-between mb-2">
-                            <Label htmlFor="password" className="text-slate-700 font-medium">Password</Label>
-                            <button type="button" className="text-sm text-emerald-600 hover:text-emerald-700 font-medium">
-                                Forgot password?
-                            </button>
-                            </div>
-                            <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-                            <Input
-                                id="password"
-                                type={showPassword ? 'text' : 'password'}
-                                placeholder="••••••••"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="pl-10 pr-12 h-12 rounded-xl border-slate-200 focus:border-emerald-400 focus:ring-emerald-400"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                            >
-                                {showPassword ? (
-                                <EyeOff className="w-5 h-5" />
-                                ) : (
-                                <Eye className="w-5 h-5" />
-                                )}
-                            </button>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center">
-                            <input
-                            id="remember"
-                            type="checkbox"
-                            className="w-4 h-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
-                            />
-                            <label htmlFor="remember" className="ml-2 text-sm text-slate-600">
-                            Remember me for 30 days
-                            </label>
-                        </div>
-
-                        <Button
-                            type="submit"
-                            className="w-full h-12 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-xl font-medium shadow-lg shadow-emerald-200/50 transition-all hover:shadow-xl"
-                        >
-                            Sign in
-                            <ArrowRight className="ml-2 w-5 h-5" />
-                        </Button>
-                        </form>
+                        <LoginForm />
 
                         <div className="mt-8 text-center">
                         <p className="text-sm text-slate-600">

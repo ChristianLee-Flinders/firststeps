@@ -17,6 +17,8 @@ export function getIconByName(name?: string) {
   return (Icons as any)[name] ?? Icons.FileText
 }
 
+export const parseStringify = <T>(value: T): T => JSON.parse(JSON.stringify(value));
+
 export function calculateAge(
   dob: string,
   format: 'short' | 'long' = 'short'
@@ -37,4 +39,12 @@ export function calculateAge(
   }
 
   return `${years} ${yLabel} ${months} ${mLabel}`;
+}
+
+export function toPlainObject<T = any>(value: T): Record<string, any> {
+  try {
+    return JSON.parse(JSON.stringify(value ?? {}))
+  } catch {
+    return {};
+  }
 }

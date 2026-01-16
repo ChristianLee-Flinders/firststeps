@@ -14,7 +14,7 @@ export async function login({email, password}: { email: string, password: string
     try {
         const session = await account.createEmailPasswordSession({email, password});
 
-        (await cookies()).set('a_session_' + process.env.NEXT_PUBLIC_APPWRITE_PROJECT!, session.secret, {
+        (await cookies()).set('session_token', session.secret, {
             httpOnly: true,
             secure: true,
             sameSite: 'strict',
